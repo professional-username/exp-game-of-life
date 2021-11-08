@@ -1,18 +1,23 @@
+#include <vector>
 #include <iostream>
 #include <GLFW/glfw3.h>
 #include <Eigen/Dense>
 
-float gScreenWidth = 1920;
+using namespace std;
+
+float gScreenWidth = 1920 ;
 float gScreenHeight = 1080;
-float gSquareSize = 4e-6;
+float gSquareSize = 9e-6;
 float hSize = gSquareSize * gScreenHeight;
 float vSize = gSquareSize * gScreenWidth;
+
+vector<float> gColors(6, 1);
 
 GLFWwindow* initGraphics(int *worldWidth, int *worldHeight)
 {
 	if (!glfwInit())
 		std::cout << "Placeholder" << std::endl;
-	GLFWwindow* window = glfwCreateWindow(gScreenWidth, gScreenHeight, "Rule", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(gScreenWidth, gScreenHeight, "Game of Life", NULL, NULL);
 	glfwMakeContextCurrent(window);
 	glTranslatef(-1, -1, 0);
 
@@ -20,12 +25,24 @@ GLFWwindow* initGraphics(int *worldWidth, int *worldHeight)
 	*worldHeight = 2 / vSize;
 	*worldWidth = 2 / hSize;
 
+	// Create a random color palette
+	srand (time(NULL));
+	for (int i = 0; i < 6; i++)
+		gColors[i] = rand() / float(RAND_MAX);
+
 	return window;
 }
 
-void drawSquare(int x, int y)
+void drawSquare(int x, int y, float intensity)
 {
-	// Draw a square in a place
+	// Set the color of the square
+	glColor4f(
+	    intensity * pow((intensity * gColors[0]), gColors[1]),
+	    intensity * pow((intensity * gColors[2]), gColors[3]),
+	    intensity * pow((intensity * gColors[4]), gColors[5]),
+	    0.0f
+	);
+	// Draw the square in the place
 	glBegin(GL_QUADS);
 	glVertex2f(x * hSize, y * vSize);
 	glVertex2f(x * hSize, y * vSize + vSize);
@@ -47,11 +64,12 @@ bool render(Eigen::MatrixXd world, GLFWwindow* window)
 	int worldWidth = world.cols();
 	for (size_t i = 0, size = world.size(); i < size; i++)
 	{
-		if ((*(world.data() + i)) == 1)
+		float v = (*(world.data() + i));
+		if (v != 0)
 		{
 			int x = (int) i / worldHeight;
 			int y = i % worldHeight;
-			drawSquare(x, y);
+			drawSquare(x, y, v);
 		}
 	}
 

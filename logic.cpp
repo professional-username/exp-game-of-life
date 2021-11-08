@@ -4,6 +4,8 @@
 using namespace std;
 using Eigen::MatrixXd;
 
+float gFade = 0.1f;
+
 MatrixXd initWorld(int worldWidth, int worldHeight)
 {
 	// Create the world as a matrix
@@ -33,22 +35,24 @@ MatrixXd step(MatrixXd world)
 		{
 			// Yes it's ugly, yes I need to fix it
 			int sum = 0;
-			sum += world(j - 1, i - 1);
-			sum += world(j - 1, i);
-			sum += world(j - 1, i + 1);
-			sum += world(j, i - 1);
-			sum += world(j, i + 1);
-			sum += world(j + 1, i - 1);
-			sum += world(j + 1, i);
-			sum += world(j + 1, i + 1);
+			sum += floor(world(j - 1, i - 1));
+			sum += floor(world(j - 1, i));
+			sum += floor(world(j - 1, i + 1));
+			sum += floor(world(j, i - 1));
+			sum += floor(world(j, i + 1));
+			sum += floor(world(j + 1, i - 1));
+			sum += floor(world(j + 1, i));
+			sum += floor(world(j + 1, i + 1));
 
-			// Standard Conway's GOL rules
+			// Standard Conway's GOL rules, but with fading cells
 			if (sum < 2 || sum > 3)
-				new_world(j, i) = 0;
+				new_world(j, i) = max(float (world(j, i) - gFade), 0.0f);
 			else if (sum == 3)
 				new_world(j, i) = 1;
-			else if (sum == 2)
-				new_world(j, i) = world(j, i);
+			else if (sum == 2 && world(j, i) == 1)
+				new_world(j, i) = 1;
+			else if (sum == 2 && world(j, i) < 1)
+				new_world(j, i) = max(float (world(j, i) - gFade), 0.0f);
 		}
 	}
 
