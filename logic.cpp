@@ -4,7 +4,7 @@
 using namespace std;
 using Eigen::MatrixXd;
 
-float gFade = 0.1f;
+float gFade = 0.035f;
 
 MatrixXd initWorld(int worldWidth, int worldHeight)
 {

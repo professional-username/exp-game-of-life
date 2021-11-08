@@ -27,8 +27,10 @@ GLFWwindow* initGraphics(int *worldWidth, int *worldHeight)
 
 	// Create a random color palette
 	srand (time(NULL));
-	for (int i = 0; i < 6; i++)
+	for (int i = 0; i < 6; i += 2)
 		gColors[i] = rand() / float(RAND_MAX);
+	for (int i = 1; i < 6; i += 2)
+		gColors[i] = 3 * (rand() / float(RAND_MAX));
 
 	return window;
 }
@@ -37,9 +39,9 @@ void drawSquare(int x, int y, float intensity)
 {
 	// Set the color of the square
 	glColor4f(
-	    intensity * pow((intensity * gColors[0]), gColors[1]),
-	    intensity * pow((intensity * gColors[2]), gColors[3]),
-	    intensity * pow((intensity * gColors[4]), gColors[5]),
+	    pow((intensity * gColors[0]), gColors[1]),
+	    pow((intensity * gColors[2]), gColors[3]),
+	    pow((intensity * gColors[4]), gColors[5]),
 	    0.0f
 	);
 	// Draw the square in the place
