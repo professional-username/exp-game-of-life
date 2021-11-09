@@ -12,18 +12,19 @@ int gWait = 10;
 GLFWwindow* window;
 MatrixXd world;
 bool reset_flag = false;
+int worldWidth;
+int worldHeight;
 
 extern GLFWwindow* initGraphics(int *worldWidth, int *worldHeight);
 extern bool render(MatrixXd world, GLFWwindow* window);
 extern MatrixXd initWorld(int worldWidth, int worldHeight);
 extern MatrixXd step(MatrixXd world);
+extern void generateColors();
 
 void reset()
 {
 	// Set the world and window
-	int worldWidth;
-	int worldHeight;
-	window = initGraphics(&worldWidth, &worldHeight);
+	generateColors();
 	world = initWorld(worldWidth, worldHeight);
 	reset_flag = false;
 }
@@ -31,6 +32,7 @@ void reset()
 int main()
 {
 	// Initialisation
+	window = initGraphics(&worldWidth, &worldHeight);
 	reset();
 
 	// Main loop

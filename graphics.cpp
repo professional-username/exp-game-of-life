@@ -21,6 +21,16 @@ void space_to_reset(GLFWwindow* window, int key, int scancode, int action, int m
 		reset_flag = true;
 }
 
+void generateColors()
+{
+	// Colors fade towards black over time, but in funky ways
+	srand (time(NULL));
+	for (int i = 0; i < 6; i += 2)
+		gColors[i] = rand() / float(RAND_MAX);
+	for (int i = 1; i < 6; i += 2)
+		gColors[i] = 3 * (rand() / float(RAND_MAX));
+}
+
 GLFWwindow* initGraphics(int *worldWidth, int *worldHeight)
 {
 	// Create the window
@@ -42,13 +52,6 @@ GLFWwindow* initGraphics(int *worldWidth, int *worldHeight)
 	// Define the size of the world based on the screen width / height
 	*worldHeight = 2 / vSize;
 	*worldWidth = 2 / hSize;
-
-	// Create a random color palette
-	srand (time(NULL));
-	for (int i = 0; i < 6; i += 2)
-		gColors[i] = rand() / float(RAND_MAX);
-	for (int i = 1; i < 6; i += 2)
-		gColors[i] = 3 * (rand() / float(RAND_MAX));
 
 	return window;
 }
