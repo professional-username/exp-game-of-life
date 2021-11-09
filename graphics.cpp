@@ -10,16 +10,34 @@ float gScreenHeight = 1080;
 float gSquareSize = 9e-6;
 float hSize = gSquareSize * gScreenHeight;
 float vSize = gSquareSize * gScreenWidth;
-
 vector<float> gColors(6, 1);
+
+extern bool reset_flag;
+
+// Pressing space tells the main game loop to reset the world
+void space_to_reset(GLFWwindow* window, int key, int scancode, int action, int mods)
+{
+	if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+		reset_flag = true;
+}
 
 GLFWwindow* initGraphics(int *worldWidth, int *worldHeight)
 {
+	// Create the window
+	glfwTerminate();
 	if (!glfwInit())
 		std::cout << "Placeholder" << std::endl;
-	GLFWwindow* window = glfwCreateWindow(gScreenWidth, gScreenHeight, "Game of Life", NULL, NULL);
+	GLFWwindow* window = glfwCreateWindow(
+	                         gScreenWidth,
+	                         gScreenHeight,
+	                         "Game of Life",
+	                         NULL, NULL
+	                     );
 	glfwMakeContextCurrent(window);
 	glTranslatef(-1, -1, 0);
+
+	// Reset when space is pressed
+	glfwSetKeyCallback(window, space_to_reset);
 
 	// Define the size of the world based on the screen width / height
 	*worldHeight = 2 / vSize;
