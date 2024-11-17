@@ -2,9 +2,7 @@
 
 {
   # https://devenv.sh/basics/
-  env = {
-    GREET = "devenv";
-  };
+  env = { GREET = "devenv"; };
 
   # Required packages for C++ development with GLFW and Eigen
   packages = with pkgs; [
@@ -12,15 +10,15 @@
     gcc
     cmake
     gnumake
-    
+
     # Libraries
     glfw
     eigen
-    
+
     # Development tools
     gdb
     valgrind
-    
+
     # Version control
     git
   ];
@@ -48,11 +46,6 @@
 
     project-clean.exec = ''
       rm -rf .build
-    '';
-
-    project-init.exec = ''
-      mkdir -p src images .build
-      touch images/.gitkeep
     '';
   };
 
