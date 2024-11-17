@@ -10,3 +10,18 @@ devenv.local.nix
 
 # pre-commit
 .pre-commit-config.yaml
+# Build directory
+build/
+.build/
+
+# Compiled Object files
+*.o
+*.obj
+
+# Executables
+*.exe
+*.out
+
+# IDE specific files
+.vscode/
+.idea/

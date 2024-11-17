@@ -38,11 +38,16 @@
   # Project scripts
   scripts = {
     project-compile.exec = ''
-      g++ -o game main.cpp graphics.cpp logic.cpp -lglfw -lGL -I${pkgs.eigen}/include/eigen3
+      mkdir -p .build
+      g++ -o .build/game main.cpp graphics.cpp logic.cpp -lglfw -lGL -I${pkgs.eigen}/include/eigen3
     '';
 
     project-run.exec = ''
-      ./game
+      ./.build/game
+    '';
+
+    project-clean.exec = ''
+      rm -rf .build
     '';
   };
 
