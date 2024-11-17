@@ -34,7 +34,6 @@ direnv allow
 - `project-compile`: Compile the project
 - `project-run`: Run the compiled executable
 - `project-clean`: Clean build artifacts
-- `project-init`: Initialize project directories
 
 Example workflow:
 ```bash
