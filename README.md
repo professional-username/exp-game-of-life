@@ -42,6 +42,9 @@ project-compile
 project-run
 ```
 
+## Controls
+- Spacebar: Reset simulation
+
 ## Implementation Details
 
 The project is structured into these main components:
