@@ -51,8 +51,8 @@
     '';
 
     project-init.exec = ''
-      mkdir -p src images docs .build
-      touch images/.gitkeep docs/.gitkeep
+      mkdir -p src images .build
+      touch images/.gitkeep
     '';
   };
 
