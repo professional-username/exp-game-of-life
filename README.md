@@ -1,11 +1,12 @@
-# Graphics Simulation
+# Colourful Conway's Game of Life Simulation
 
 A C++ graphical simulation project using OpenGL/GLFW and the Eigen matrix library. This project demonstrates real-time graphics rendering and matrix-based state management.
 
-![Simulation Preview](images/preview.png)
+![Simulation Preview](images/preview_blue_purple.png)
 
 ## Features
 
+- Beautiful randomized colours on every run
 - Real-time graphical rendering using OpenGL/GLFW
 - Matrix-based world state management with Eigen
 - Interactive controls for simulation reset
@@ -54,8 +55,8 @@ The project is structured into these main components:
 
 Here's how the simulation looks in action:
 
-![Color Transitions](images/colors.png)
-![State Visualization](images/state.png)
+![Blue-Pink Example](images/preview_blue_pink.png)
+![Red-White Example](images/preview_red_white.png)
 
 ## License
 
