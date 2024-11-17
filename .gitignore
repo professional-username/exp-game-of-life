@@ -1,27 +1,24 @@
+# Build and environment
+.build/
+build/
 a.out
-.aider*
 .env
-# Devenv
 .devenv*
 devenv.local.nix
-
-# direnv
 .direnv
 
-# pre-commit
+# Development tools
+.aider*
 .pre-commit-config.yaml
-# Build directory
-build/
-.build/
+.vscode/
+.idea/
 
-# Compiled Object files
+# Compiled files
 *.o
 *.obj
-
-# Executables
 *.exe
 *.out
 
-# IDE specific files
-.vscode/
-.idea/
+# OS specific
+.DS_Store
+*~

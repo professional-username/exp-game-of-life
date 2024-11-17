@@ -39,7 +39,7 @@
   scripts = {
     project-compile.exec = ''
       mkdir -p .build
-      g++ -o .build/game main.cpp graphics.cpp logic.cpp -lglfw -lGL -I${pkgs.eigen}/include/eigen3
+      g++ -o .build/game src/main.cpp src/graphics.cpp src/logic.cpp -lglfw -lGL -I${pkgs.eigen}/include/eigen3
     '';
 
     project-run.exec = ''
@@ -48,6 +48,11 @@
 
     project-clean.exec = ''
       rm -rf .build
+    '';
+
+    project-init.exec = ''
+      mkdir -p src images docs .build
+      touch images/.gitkeep docs/.gitkeep
     '';
   };
 
