@@ -14,27 +14,20 @@ A C++ graphical simulation project using OpenGL/GLFW and the Eigen matrix librar
 
 ## Development Setup
 
-This project uses [devenv.sh](https://devenv.sh) for development environment management. This ensures consistent development environments with all required dependencies.
+This project uses [devenv.sh](https://devenv.sh) for development environment management.
 
 ### Prerequisites
 
-1. Install Nix package manager
-2. Enable Flakes and install direnv (follow [devenv.sh installation guide](https://devenv.sh/getting-started/))
-
-### Getting Started
-
-1. Clone the repository:
+1. Install devenv by following the [official installation guide](https://devenv.sh/getting-started/)
+2. Clone and enter the repository:
 ```bash
 git clone <repository-url>
 cd <repository-name>
 ```
-
-2. Allow direnv:
+3. Initialize the development environment:
 ```bash
 direnv allow
 ```
-
-3. Your development environment will be automatically set up with all required dependencies!
 
 ### Development Commands
 
