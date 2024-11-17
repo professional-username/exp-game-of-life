@@ -2,44 +2,44 @@
 
 {
   # https://devenv.sh/basics/
-  env.GREET = "devenv";
+  env = {
+    GREET = "devenv";
+  };
 
-  # https://devenv.sh/packages/
-  packages = [ pkgs.git ];
+  # Required packages for C++ development with GLFW and Eigen
+  packages = with pkgs; [
+    # Build tools
+    gcc
+    cmake
+    gnumake
+    
+    # Libraries
+    glfw
+    eigen
+    
+    # Development tools
+    gdb
+    valgrind
+    
+    # Version control
+    git
+  ];
 
-  # https://devenv.sh/languages/
-  # languages.rust.enable = true;
-
-  # https://devenv.sh/processes/
-  # processes.cargo-watch.exec = "cargo-watch";
-
-  # https://devenv.sh/services/
-  # services.postgres.enable = true;
-
-  # https://devenv.sh/scripts/
-  scripts.hello.exec = ''
-    echo hello from $GREET
-  '';
+  # Configure compiler flags if needed
+  env.CPATH = "${pkgs.eigen}/include/eigen3:${pkgs.glfw}/include";
+  env.LIBRARY_PATH = "${pkgs.glfw}/lib";
 
   enterShell = ''
-    hello
-    git --version
+    echo "C++ Development Environment Ready"
+    echo "GLFW version: $(pkg-config --modversion glfw3)"
+    echo "GCC version: $(gcc --version | head -n1)"
   '';
 
-  # https://devenv.sh/tasks/
-  # tasks = {
-  #   "myproj:setup".exec = "mytool build";
-  #   "devenv:enterShell".after = [ "myproj:setup" ];
-  # };
-
-  # https://devenv.sh/tests/
+  # Basic test to ensure environment is working
   enterTest = ''
-    echo "Running tests"
-    git --version | grep --color=auto "${pkgs.git.version}"
+    echo "Running environment tests..."
+    gcc --version
+    pkg-config --exists glfw3 && echo "GLFW found"
+    test -d ${pkgs.eigen}/include/eigen3 && echo "Eigen found"
   '';
-
-  # https://devenv.sh/pre-commit-hooks/
-  # pre-commit.hooks.shellcheck.enable = true;
-
-  # See full reference at https://devenv.sh/reference/options/
 }
