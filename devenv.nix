@@ -35,6 +35,17 @@
     echo "GCC version: $(gcc --version | head -n1)"
   '';
 
+  # Project scripts
+  scripts = {
+    project-compile.exec = ''
+      g++ -o game main.cpp graphics.cpp logic.cpp -lglfw -lGL -I${pkgs.eigen}/include/eigen3
+    '';
+
+    project-run.exec = ''
+      ./game
+    '';
+  };
+
   # Basic test to ensure environment is working
   enterTest = ''
     echo "Running environment tests..."
