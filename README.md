@@ -7,11 +7,10 @@ A C++ graphical simulation project using OpenGL/GLFW and the Eigen matrix librar
 ## Features
 
 - Beautiful randomized colours on every run
+- Smooth color transitions and intensity visualization
 - Real-time graphical rendering using OpenGL/GLFW
 - Matrix-based world state management with Eigen
-- Interactive controls for simulation reset
-- Configurable world dimensions
-- Smooth color transitions and intensity visualization
+- Adaptive simulation size
 
 ## Development Setup
 
@@ -22,8 +21,8 @@ This project uses [devenv.sh](https://devenv.sh) for development environment man
 1. Install devenv by following the [official installation guide](https://devenv.sh/getting-started/)
 2. Clone and enter the repository:
 ```bash
-git clone <repository-url>
-cd <repository-name>
+git clone https://github.com/professional-username/exp-game-of-life
+cd https://github.com/professional-username/exp-game-of-life
 ```
 3. Initialize the development environment:
 ```bash
